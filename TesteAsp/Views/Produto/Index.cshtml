@@ -1,0 +1,83 @@
+﻿@model IEnumerable<TesteAsp.Models.Produto>
+@using TesteAsp.Classes;
+
+@{
+    ViewBag.Title = "Produtos";
+}
+
+<h2>Produtos</h2>
+    <p>
+        @Html.ActionLink("Criar", "Create", new { }, ButtonsHelper.buttonNew())
+    </p>
+    <table>
+            <tr>
+                <th>
+                    <input type="text" class="form-control" placeholder="Código" id="inputCod" />
+                </th>
+                <th>
+                    <input type="text" class="form-control" placeholder="Produto" id="inputProd" />
+                </th>
+                <th>
+                    <input type="text" class="form-control" placeholder="Tipo" id="inputTipo" />
+                </th>
+                <th>
+                    <button class="btn btn-outline-secondary" type="button" id="Buscar">Buscar</button>
+                </th>
+            </tr>
+    </table>
+    <table class="table table-condensed" id="tabela">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Tipo.Descricao)
+            </th>
+
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr id="rows">
+                <td>
+                    @Html.DisplayFor(modelItem => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.descricao)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Tipo.Descricao)
+                </td>
+
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }, ButtonsHelper.buttonEdit()) 
+                    @Html.ActionLink("Details", "Details", new { id = item.id }, ButtonsHelper.buttonDetails()) 
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id }, ButtonsHelper.buttonDelete())
+                </td>
+            </tr>
+        }
+
+    </table>
+
+@section Scripts
+{
+<script type="text/javascript">
+    $(document).ready(function () {
+        $(Buscar).click(function () {
+            var prod = $(inputProd).val();
+            if (prod != null) {
+                var currentObject = $(this).text();
+                var url = '@Url.Action("searchProd","Produto",new {desc = "__param__" })'; //action de busca
+                window.location.href = url.replace('__param__', encodeURIComponent(prod)); // troca a string pelo paramentro
+                $.get(url, { theName: currentObject });
+            }
+        });
+    });
+
+</script>
+}
+

@@ -1,0 +1,50 @@
+﻿@model IEnumerable<TesteAsp.Models.Estoque>
+@using TesteAsp.Classes;
+
+@{
+    ViewBag.Title = "Estoque";
+}
+
+<h2>Estoque</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Código
+        </th>
+        <th>
+            Produto
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.quantidade)
+        </th>
+        <th>
+            Unidade
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.produtoId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProdEstoque.descricao)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.quantidade)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ProdEstoque.Tipo.UM.unidade)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.estoqueId }, ButtonsHelper.buttonEdit()) 
+            @Html.ActionLink("Details", "Details", new { id=item.estoqueId }, ButtonsHelper.buttonDetails()) 
+            @Html.ActionLink("Delete", "Delete", new { id=item.estoqueId }, ButtonsHelper.buttonDelete())
+        </td>
+    </tr>
+}
+
+</table>

@@ -1,0 +1,34 @@
+﻿@model TesteAsp.Models.Estoque
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Estoque</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProdEstoque.descricao)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProdEstoque.descricao)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantidade)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantidade)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.estoqueId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
