@@ -1,0 +1,66 @@
+﻿@using TesteAsp.ViewModel;
+@model IEnumerable<RelatorioViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+
+
+
+    function get_params_from_href(href) {
+        var paramstr = href.split('?')[1];
+        var paramsarr = paramstr.split('&');
+        var params = Array();
+        for (var i = 0; i < paramsarr.length; i++) {
+            var tmparr = paramsarr[i].split('=');
+            params[tmparr[0]] = tmparr[1];
+        }
+        return params;
+    }
+</script>
+
+<table class="table table-condensed">
+
+    <tr>
+        <th>
+            ID
+        </th>
+        <th>
+            PRODUTO
+        </th>
+        <th>
+            TIPO
+        </th>
+        <th>
+            QUANTIDADE
+        </th>
+        <th>
+            UNIDADE DE MEDIDA
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProdDescricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TipoDescricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Quantidade)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unidade)
+            </td>
+        </tr>
+    }
+
+
+</table>

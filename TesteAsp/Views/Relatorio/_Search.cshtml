@@ -1,0 +1,67 @@
+﻿@using TesteAsp.ViewModel;
+@model IEnumerable<RelatorioViewModel>
+
+<div class="row">
+    <div class="col-md-12">
+
+
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => Model.FirstOrDefault().TipoDescricao)
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="glyphicon glyphicon-equalizer"></i>
+                    </div>
+                    @Html.DropDownList("cod_tipo", null, "", htmlAttributes: new { @class = "form-control selectpicker", @data_live_search = "true" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <div class="form-group">
+                @Html.LabelFor(model => Model.FirstOrDefault().Unidade, new { @class = "control-label" })
+                <div class="input-group">
+                    <div class="input-group-addon">
+                        <i class="fa fa-tag"></i>
+                    </div>
+                    <input class="text-box form-control" id="unidade" name="unidade" type="text" autocomplete="off">
+
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="col-md-12">
+            <div class="form-group">
+
+                <button class="btn btn-primary" type="button" onclick="Pesquisar()"><i class="fa fa-search"></i> Pesquisar</button>
+                <button class="btn btn-primary" type="button" onclick="PesquisarPDF()"><i class="fa fa-file-pdf-o"></i> PDF</button>
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    function LoadSearch() {
+        let search_item = {};
+        search_item.cod_tipo = $("#cod_tipo").val();
+        search_item.unidade = $("#unidade").val();
+
+        return search_item;
+    }
+
+
+
+
+
+</script>
+

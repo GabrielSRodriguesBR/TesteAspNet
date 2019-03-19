@@ -1,0 +1,53 @@
+﻿
+
+
+@section Scripts{
+
+    <script>
+
+
+        function LoadRegistros(page) {
+            debugger;
+            var search = LoadSearch();
+            $("#DisplayRegistros").load('@Url.Action("_ListaRegistos")', { search: JSON.stringify(search), page: page, pdf: false  }, function () { });
+        }
+
+        function Pesquisar() {
+            debugger;
+            $("#DisplayRegistros").html('<div style="min-height:200px; text-align:center; margin-top:100px;"><i class="fa fa-spinner fa-pulse fa-3x fa-fw"></i> <b>Aguarde...</b></div>');
+            LoadRegistros(1);
+        }
+
+        function PesquisarPDF() {
+
+            var search = LoadSearch();
+
+            var url = '@Url.Action("_ListaRegistros")?search=' + JSON.stringify(search) + "&page=1&pdf=true";
+
+
+            var link = document.createElement('a');
+            document.body.appendChild(link);
+            link.href = url;
+            link.click();
+
+
+           // window.open(url);
+
+        }
+
+
+    </script>
+}
+
+
+<div class="row">
+    <div class="col-lg-12 col-sm-12 col-xs-12">
+        @Html.Action("_Search")
+        <div class="panel">
+            <div id="DisplayRegistros">
+                @Html.Action("_ListaRegistos")
+            </div>
+        </div>
+    </div>
+</div>
+
