@@ -21,5 +21,7 @@ namespace TesteAsp.Models
         public virtual Tipo Tipo { get; set; }
 
         public virtual ICollection<Estoque> estoqueProduto { get; set; }
+
+        public virtual ICollection<VendasModel> vendasProduto{ get; set; }
     }
 }

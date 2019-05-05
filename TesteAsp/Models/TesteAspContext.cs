@@ -20,5 +20,9 @@ namespace TesteAsp.Models
         public System.Data.Entity.DbSet<TesteAsp.Models.Estoque> Estoques { get; set; }
 
         public System.Data.Entity.DbSet<TesteAsp.Models.UnidadeMedida> UnidadeMedidas { get; set; }
+
+        public System.Data.Entity.DbSet<TesteAsp.Models.VendasModel> VendasModels { get; set; }
+
+        public System.Data.Entity.DbSet<TesteAsp.Models.EmpresasModel> EmpresasModels { get; set; }
     }
 }
